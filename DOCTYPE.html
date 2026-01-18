@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>ระบบออกใบเสร็จ Custom Amulet</title>
+<style>
+body { font-family: Tahoma; padding: 20px; background:#f7f7f7 }
+h2 { margin-top: 30px }
+select, input, textarea, button {
+  width: 100%; padding: 8px; margin: 6px 0;
+}
+textarea { height: 320px }
+.box { background:#fff; padding:20px; border-radius:8px }
+.hidden { display:none }
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>ข้อมูลลูกค้า</h2>
+
+<label>เลือกเพศ</label>
+<select id="gender" onchange="switchGender()">
+  <option value="">-- เลือก --</option>
+  <option value="female">ผู้หญิง</option>
+  <option value="male">ผู้ชาย</option>
+</select>
+
+<label>วันเดือนปีเกิด</label>
+<input id="birth" placeholder="8 กรกฎาคม 2527 เวลา 21.01 น.">
+
+<label>ขนาดข้อมือ (ซม.)</label>
+<input id="wrist" placeholder="17">
+</div>
+
+<!-- ================== ผู้หญิง ================== -->
+<div class="box hidden" id="female">
+<h2>เซ็ตผู้หญิง</h2>
+
+<label>ราคา 1,991 บาท</label>
+<select class="product">
+<option value="">-- เลือกเซ็ต --</option>
+<option data-price="1991" data-name="พระราหูปลุกเสก (องค์สีทอง) + White Natural Quartz">
+พระราหูปลุกเสก + White Natural Quartz
+</option>
+<option data-price="1991" data-name="พระราหูปลุกเสก (องค์สีทอง) + Black Onyx Natural Quartz">
+พระราหูปลุกเสก + Black Onyx Natural Quartz
+</option>
+<option data-price="1991" data-name="พระราหูปลุกเสก (องค์สีทอง) + หินแร่ Hematite (แร่ดูดทรัพย์)">
+พระราหูปลุกเสก + Hematite
+</option>
+<option data-price="1991" data-name="องค์พ่อพระพิฆเนศปลุกเสก (องค์สีทอง) + หิน White Natural Quartz">
+พระพิฆเนศปลุกเสก + White Natural Quartz
+</option>
+<option data-price="1991" data-name="องค์พ่อพระพิฆเนศปลุกเสก (องค์สีทอง) + หิน Black Onyx Natural Quartz">
+พระพิฆเนศปลุกเสก + Black Onyx Natural Quartz
+</option>
+</select>
+
+<label>ราคา 999 บาท</label>
+<select class="product">
+<option value="">-- เลือกเซ็ต --</option>
+<option data-price="999" data-name="ยันต์อิติปิโส ๕ หนุนดวง โภคทรัพย์ + หินแร่ Hematite (แร่ดูดทรัพย์)">
+ยันต์อิติปิโส ๕ + Hematite
+</option>
+</select>
+
+<label>ราคา 1,891 บาท</label>
+<select class="product">
+<option value="">-- เลือกเซ็ต --</option>
+<option data-price="1891" data-name="ตะกรุด #รวมเศรษฐี พุทธคุณมหาเศรษฐี การเงิน คุ้มภัย + Black Onyx Natural Quartz">
+ตะกรุดรวมเศรษฐี + Black Onyx
+</option>
+<option data-price="1891" data-name="ตะกรุด #รวมเศรษฐี พุทธคุณมหาเศรษฐี การเงิน คุ้มภัย + White Natural Quartz">
+ตะกรุดรวมเศรษฐี + White Natural Quartz
+</option>
+</select>
+</div>
+
+<!-- ================== ผู้ชาย ================== -->
+<div class="box hidden" id="male">
+<h2>เซ็ตผู้ชาย</h2>
+
+<label>ราคา 1,991 บาท</label>
+<select class="product">
+<option value="">-- เลือกเซ็ต --</option>
+<option data-price="1991" data-name="พระราหูปลุกเสก + Black Onyx Stone + Silver Charm เงินแท้ 92.5%">
+พระราหู + Black Onyx + Silver
+</option>
+<option data-price="1991" data-name="พระราหูปลุกเสก + Hematite + Silver Charm เงินแท้ 92.5%">
+พระราหู + Hematite + Silver
+</option>
+<option data-price="1991" data-name="องค์พ่อพระพิฆเนศปลุกเสก + Hematite + Silver Charm เงินแท้ 92.5%">
+พระพิฆเนศ + Hematite + Silver
+</option>
+<option data-price="1991" data-name="องค์พ่อพระพิฆเนศปลุกเสก + Hematite x Black Onyx + Silver Charm เงินแท้ 92.5%">
+พระพิฆเนศ + Hematite x Black Onyx + Silver
+</option>
+</select>
+
+<label>ราคา 999 บาท</label>
+<select class="product">
+<option value="">-- เลือกเซ็ต --</option>
+<option data-price="999" data-name="ยันต์อิติปิโส ๕ หนุนดวง โภคทรัพย์ + หินแร่ Hematite">
+ยันต์อิติปิโส ๕ + Hematite
+</option>
+</select>
+
+<label>ราคา 1,891 บาท</label>
+<select class="product">
+<option value="">-- เลือกเซ็ต --</option>
+<option data-price="1891" data-name="ตะกรุดนางรับ นะเสน่ห์ มหาเศรษฐี + Hematite + Silver Charm เงินแท้ 92.5%">
+ตะกรุดนางรับ + Hematite + Silver
+</option>
+<option data-price="1891" data-name="ตะกรุด #รวมเศรษฐี + White Natural Quartz">
+ตะกรุดรวมเศรษฐี + White Natural Quartz
+</option>
+</select>
+</div>
+
+<div class="box">
+<button onclick="generateReceipt()">สร้างใบเสร็จ</button>
+<h2>ผลลัพธ์ (คัดลอกส่งลูกค้า)</h2>
+<textarea id="output"></textarea>
+</div>
+
+<script>
+function switchGender() {
+  female.classList.add("hidden");
+  male.classList.add("hidden");
+  const g = gender.value;
+  if (g) document.getElementById(g).classList.remove("hidden");
+}
+
+function generateReceipt() {
+  const genderVal = gender.value;
+  if (!genderVal) return alert("กรุณาเลือกเพศ");
+
+  let total = 0;
+  let productText = "";
+  let has1991 = false;
+  let has1891 = false;
+
+  document.querySelectorAll("#" + genderVal + " .product").forEach(sel => {
+    const opt = sel.options[sel.selectedIndex];
+    if (opt && opt.dataset.price) {
+      const price = parseInt(opt.dataset.price);
+      total += price;
+      if (price === 1991) has1991 = true;
+      if (price === 1891) has1891 = true;
+      productText += opt.dataset.name + "\n\n";
+    }
+  });
+
+  let summaryText = `
+สรุปยอด ${total.toLocaleString()} บาท
+	
+ค่าส่งฟรี***  
+`;
+
+  if (has1991 && has1891) {
+    summaryText = `
+ราคา  1891 + 1991     = 3,882  บาท 
+
+สรุปยอดราคาพิเศษ เป็นเลขคู่ธาตุลม  เสริมเมตตามหานิยม การยอมรับในสังคม ชื่อเสียงที่ดี  3,800  บาท ค่าส่งฟรี***
+`;
+  }
+
+  output.value =
+`Custom Amulet เสริมพื้นดวง
+
+${birth.value}
+
+${productText}
+ใบเซอร์ Certification Card
+
+ขนาดข้อมือ ${wrist.value} เซนติเมตร  
+
+${summaryText}
+
+คุณลูกค้าสามารถโอนเงินเพื่อคอนเฟิร์มออเดอร์ในการลงมือทำ Custom ได้เลยครับ  
+ 
+
+ธ. ไทยพานิชย์ 
+
+2064171023
+
+บริษัท อธิษฐานอมูเลท จำกัด`;
+}
+</script>
+
+</body>
+</html>
